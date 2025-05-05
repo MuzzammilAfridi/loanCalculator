@@ -1,82 +1,122 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { AppBar, Toolbar, Typography, Button,Box, Switch, FormControlLabel, ThemeProvider, createTheme } from '@mui/material';
+import { ThemeContext } from "../context/ThemeContext";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  Box,
+  Switch,
+  FormControlLabel,
+  IconButton,
+  Menu,
+  MenuItem,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const Navbar = () => {
-  // State to toggle the theme
-  const [darkMode, setDarkMode] = useState(false);
+  const { darkMode, toggleTheme } = useContext(ThemeContext);
+  const [anchorEl, setAnchorEl] = useState(null);
 
-  // Handle theme change
-  const handleSwitchChange = (event) => {
-    setDarkMode(event.target.checked);
+  const handleMenuClick = (event) => {
+    setAnchorEl(event.currentTarget);
   };
 
-  // Light and Dark themes
-  const lightTheme = createTheme({
-    palette: {
-      mode: 'light',
-      primary: {
-        main: '#1976d2',
-      },
-      secondary: {
-        main: '#9c27b0',
-      },
-    },
-  });
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
 
-  const darkTheme = createTheme({
-    palette: {
-      mode: 'dark',
-      primary: {
-        main: '#90caf9',
-      },
-      secondary: {
-        main: '#f48fb1',
-      },
-    },
-  });
+  return (
+    <AppBar position="static">
+      <Toolbar
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          width: "100%",
+        }}
+      >
 
-   return (
-    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-      <AppBar position="static">
-        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-      
-          <Typography variant="h6">
-            Loan Calculator
-          </Typography>
 
-          {/* Right side buttons */}
-          <Box sx={{ display: 'flex', gap: 1 }}>
+<IconButton
+          edge="end"
+          color="inherit"
+          aria-label="menu"
+          onClick={handleMenuClick}
+          sx={{ display: { xs: "block", md: "none" } }}
+        >
+          <MenuIcon />
+        </IconButton>
+
+        <Typography sx={{ marginRight: 10 }} variant="h6">
+          Loan Calculator
+        </Typography>
+
+       
+
+        {/* Switch only for mobile */}
+        <FormControlLabel
+          control={<Switch checked={darkMode} onChange={toggleTheme} />}
+          sx={{
+            display: { xs: "block", md: "none" },
+            color: "white",
+            position: "relative",
+            left: 20,
+          }}
+        />
+
+        <Menu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleMenuClose}
+          PaperProps={{
+            sx: {
+              bgcolor: darkMode ? "grey.900" : "white",
+              width: "250px",
+              minHeight: "90vh",
+              overflowY: "auto",
+              borderRadius: 0,
+              mt: 1,
+            },
+          }}
+        >
+          <MenuItem component={Link} to="/" onClick={handleMenuClose}>
+            Home
+          </MenuItem>
+          <MenuItem component={Link} to="/exchange-rate" onClick={handleMenuClose}>
+            Exchange rate (Live)
+          </MenuItem>
+          <MenuItem component={Link} to="/about" onClick={handleMenuClose}>
+            About
+          </MenuItem>
+          <MenuItem component={Link} to="/error_page" onClick={handleMenuClose}>
+            Error Page
+          </MenuItem>
+        </Menu>
+
+        {/* Desktop Navigation */}
+        <Box sx={{ display: { xs: "none", md: "flex" }, gap: 1 }}>
           <Button component={Link} to="/" sx={{ px: 2 }} color="inherit">
-  Home
-</Button>
+            Home
+          </Button>
+          <Button component={Link} to="/exchange-rate" sx={{ px: 2 }} color="inherit">
+            Exchange rate (Live)
+          </Button>
+          <Button component={Link} to="/about" sx={{ px: 2 }} color="inherit">
+            About
+          </Button>
+          <Button component={Link} to="/error_page" sx={{ px: 2 }} color="inherit">
+            Error Page
+          </Button>
 
-<Button component={Link} to="/exchange-rate" sx={{ px: 2 }} color="inherit">
-  Exchange rate (Live)
-</Button>
-
-<Button component={Link} to="/about" sx={{ px: 2 }} color="inherit">
-  About
-</Button>
-
-<Button component={Link} to="/error" sx={{ px: 2 }} color="inherit">
-  Error Page
-</Button>
-
-
-             {/* Changing Theme in Navbar*/}
           <FormControlLabel
-            control={
-              <Switch checked={darkMode} onChange={handleSwitchChange} />
-            }
-            sx={{ color: 'white', ml: 2 }}
+            control={<Switch checked={darkMode} onChange={toggleTheme} />}
+            sx={{ color: "white", ml: 2 }}
           />
-          </Box>
-
-         
-        </Toolbar>
-      </AppBar>
-    </ThemeProvider>
+        </Box>
+      </Toolbar>
+    </AppBar>
   );
 };
 

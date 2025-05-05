@@ -1,20 +1,37 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import { Button, Typography, CssBaseline } from "@mui/material";
-import Navbar from "./components/Navbar";
+import React, { useState } from "react";
+import { Routes, Route} from "react-router-dom";
+import { CssBaseline,  } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import { ThemeProvider } from "./context/ThemeContext";
+import Navbar from "./components/Navbar"; 
 import Home from "./components/Home";
 import About from "./components/About";
+import ErrorPage from "./components/ErrorPage";
 
 const App = () => {
-  return (
-    <div>
-      <CssBaseline />
-      <Navbar />
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
+  const toggleDrawer = () => {
+    setDrawerOpen(!drawerOpen);
+  };
+
+  return (
+    <div style={{ overflowX: "hidden" }}> 
+      <ThemeProvider>
+      <CssBaseline />
+
+     
+      <Navbar /> 
+
+     
+
+     
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About/>}/>
+        <Route path="/about" element={<About />} />
+        <Route path="/error_page" element={<ErrorPage />} />
       </Routes>
+      </ThemeProvider>
     </div>
   );
 };

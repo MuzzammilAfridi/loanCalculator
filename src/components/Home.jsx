@@ -68,10 +68,18 @@ const Home = () => {
   };
 
   return (
-    <Box sx={{ px: 5 }}>
-      <Typography sx={{ color: "black", fontSize: 30, mt: 3 }}>
-        Loan Calculator Dashboard
-      </Typography>
+    <Box sx={{ px: 3 }}>
+<Typography
+  sx={{
+    color: (theme) => (theme.palette.mode === "dark" ? "white" : "black"),
+    fontSize: 28,
+    fontWeight: 500,
+    mt: 10,
+  }}
+>
+  Loan Calculator Dashboard
+</Typography>
+
 
       <form onSubmit={handleSubmit}>
         <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
@@ -84,7 +92,7 @@ const Home = () => {
             sx={{
               width: 250,
               mt: 3,
-              [theme.breakpoints.down("sm")]: { width: "80vw" },
+              [theme.breakpoints.down("sm")]: { width: "60vw" },
             }}
           />
           <TextField
@@ -96,7 +104,7 @@ const Home = () => {
             sx={{
               width: 250,
               mt: 3,
-              [theme.breakpoints.down("sm")]: { width: "80vw" },
+              [theme.breakpoints.down("sm")]: { width: "60vw", mt:0 },
             }}
           />
           <TextField
@@ -108,7 +116,7 @@ const Home = () => {
             sx={{
               width: 250,
               mt: 3,
-              [theme.breakpoints.down("sm")]: { width: "80vw" },
+              [theme.breakpoints.down("sm")]: { width: "60vw",mt:0 },
             }}
           />
         </Box>
