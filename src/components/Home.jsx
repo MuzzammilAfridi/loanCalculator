@@ -26,6 +26,7 @@ const Home = () => {
             required
             label="Loan Amount"
             variant="outlined"
+            onChange={(e)=>setAmt(e.target.value)}
             sx={{
               width: 250,
               mt: 3,
@@ -36,6 +37,7 @@ const Home = () => {
             required
             label="Interest Rate (%)"
             variant="outlined"
+            onChange={(e)=>setIntrest(e.target.value)}
             sx={{
               width: 250,
               mt: 3,
@@ -46,6 +48,7 @@ const Home = () => {
             required
             label="Term (Years)"
             variant="outlined"
+            onChange={(e)=>setTerm(e.target.value)}
             sx={{
               width: 250,
               mt: 3,

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import { AppBar, Toolbar, Typography, Button,Box, Switch, FormControlLabel, ThemeProvider, createTheme } from '@mui/material';
 
 const Navbar = () => {
@@ -46,10 +47,21 @@ const Navbar = () => {
 
           {/* Right side buttons */}
           <Box sx={{ display: 'flex', gap: 1 }}>
-            <Button sx={{px:2}} color="inherit">Home</Button>
-            <Button sx={{px:2}} color="inherit">Exchange rate (Live)</Button>
-            <Button sx={{px:2}} color="inherit">About</Button>
-            <Button sx={{px:2}} color="inherit">Error Page</Button>
+          <Button component={Link} to="/" sx={{ px: 2 }} color="inherit">
+  Home
+</Button>
+
+<Button component={Link} to="/exchange-rate" sx={{ px: 2 }} color="inherit">
+  Exchange rate (Live)
+</Button>
+
+<Button component={Link} to="/about" sx={{ px: 2 }} color="inherit">
+  About
+</Button>
+
+<Button component={Link} to="/error" sx={{ px: 2 }} color="inherit">
+  Error Page
+</Button>
 
 
              {/* Changing Theme in Navbar*/}
