@@ -37,9 +37,7 @@ const Navbar = () => {
           width: "100%",
         }}
       >
-
-
-<IconButton
+        <IconButton
           edge="end"
           color="inherit"
           aria-label="menu"
@@ -53,9 +51,7 @@ const Navbar = () => {
           Loan Calculator
         </Typography>
 
-       
-
-        {/* Switch only for mobile */}
+        {/* For mobile screen*/}
         <FormControlLabel
           control={<Switch checked={darkMode} onChange={toggleTheme} />}
           sx={{
@@ -84,7 +80,11 @@ const Navbar = () => {
           <MenuItem component={Link} to="/" onClick={handleMenuClose}>
             Home
           </MenuItem>
-          <MenuItem component={Link} to="/exchange-rate" onClick={handleMenuClose}>
+          <MenuItem
+            component={Link}
+            to="/exchange_rate"
+            onClick={handleMenuClose}
+          >
             Exchange rate (Live)
           </MenuItem>
           <MenuItem component={Link} to="/about" onClick={handleMenuClose}>
@@ -100,13 +100,23 @@ const Navbar = () => {
           <Button component={Link} to="/" sx={{ px: 2 }} color="inherit">
             Home
           </Button>
-          <Button component={Link} to="/exchange-rate" sx={{ px: 2 }} color="inherit">
+          <Button
+            component={Link}
+            to="/exchange_rate"
+            sx={{ px: 2 }}
+            color="inherit"
+          >
             Exchange rate (Live)
           </Button>
           <Button component={Link} to="/about" sx={{ px: 2 }} color="inherit">
             About
           </Button>
-          <Button component={Link} to="/error_page" sx={{ px: 2 }} color="inherit">
+          <Button
+            component={Link}
+            to="/error_page"
+            sx={{ px: 2 }}
+            color="inherit"
+          >
             Error Page
           </Button>
 

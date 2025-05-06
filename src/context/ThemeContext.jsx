@@ -1,7 +1,7 @@
 import React, { createContext, useState } from "react";
 import { ThemeProvider as MuiThemeProvider, createTheme } from "@mui/material/styles";
 
-// 1. Create context
+
 export const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
@@ -18,7 +18,7 @@ export const ThemeProvider = ({ children }) => {
   });
 
   return (
-    // ✅ Make sure ThemeContext is used here correctly
+  
     <ThemeContext.Provider value={{ darkMode, toggleTheme }}>
       <MuiThemeProvider theme={theme}>
         {children}

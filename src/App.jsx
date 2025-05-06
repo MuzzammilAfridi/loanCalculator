@@ -7,13 +7,12 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import About from "./components/About";
 import ErrorPage from "./components/ErrorPage";
+import ExchangeRate from "./components/ExchangeRate";
 
 const App = () => {
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  
 
-  const toggleDrawer = () => {
-    setDrawerOpen(!drawerOpen);
-  };
+ 
 
   return (
     <div style={{ overflowX: "hidden" }}> 
@@ -30,6 +29,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/error_page" element={<ErrorPage />} />
+        <Route path="/exchange_rate" element={<ExchangeRate/>} />
       </Routes>
       </ThemeProvider>
     </div>
